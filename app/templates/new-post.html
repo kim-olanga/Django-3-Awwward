@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
@@ -19,18 +20,19 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <form>
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="form-group m-3">
                             <label>Title</label>
                             <input type="text" placeholder="name of project" class="form-control">
                         </div>
                         <div class="form-group m-3">
                             <label>Description</label>
-                            <input type="text" placeholder="Describe your project" class="form-control">
+                            <input required type="text" placeholder="Describe your project" class="form-control">
                           </div>
                         <div class="form-group m-3">
-                          <label>Upload Your project</label>
-                          <input type="file" class="form-control-file">
+                            <label>Upload Your project</label>
+                            <input required type="file" class="form-control-file">
                         </div>
                         <div class="form-group m-3">
                             <label>Url</label>
@@ -38,6 +40,7 @@
                         </div>
                       </form>
                 </div> 
+                <button type="submit" class="btn btn-dark m-3">post</button>
             </div>
         </div>
     </div>
