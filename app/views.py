@@ -5,3 +5,6 @@ def homepage(request):
 
     return render(request,'index.html')
 
+def new_post(request):
+
+    return render(request,'new-post.html')

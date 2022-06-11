@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,25 +13,34 @@
     <title>Add Project </title>
 </head>
 <body class="m-5">
-    <div class="container">
+{% block content %}
+{{ block.super }}
+    <div class="container"><br><br><br><br><br>
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <a href="{% url 'homepage' %}" class="btn btn-dark my-3">Go Back</a>
                 <div class="card">
                     <form>
-                        <div class="form-group">
+                        <div class="form-group m-3">
+                            <label>Title</label>
+                            <input type="text" placeholder="name of project" class="form-control">
+                        </div>
+                        <div class="form-group m-3">
                             <label>Description</label>
-                            <input type="text" class="form-control">
+                            <input type="text" placeholder="Describe your project" class="form-control">
                           </div>
-
-                        <div class="form-group">
+                        <div class="form-group m-3">
                           <label>Upload Your project</label>
-                          <input type="file" placeholder="Describe your project" class="form-control-file">
+                          <input type="file" class="form-control-file">
+                        </div>
+                        <div class="form-group m-3">
+                            <label>Url</label>
+                            <input type="text" placeholder="project Url" class="form-control">
                         </div>
                       </form>
                 </div> 
             </div>
         </div>
     </div>
+{% endblock %}
 </body>
 </html>
