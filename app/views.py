@@ -7,7 +7,6 @@ def homepage(request):
 
     return render(request,'index.html')
 
-
 def new_post(request):
     project=Project.objects.all()
     if request.method=='POST':
