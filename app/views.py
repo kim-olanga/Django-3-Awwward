@@ -1,3 +1,4 @@
+from email import message
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -76,7 +77,7 @@ def update_profile(request):
             user_form.save()
             profile_form.save()
 
-            return redirect('home')
+            return redirect('homepage')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user)
@@ -87,5 +88,24 @@ def update_profile(request):
     return render(request,'update_profile.html',context)
 
 def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()    
+        return redirect('homepage')
+    else:
+        form = NewProjectForm()
+    return render(request,'new_post.html',{"form":form})
 
-    return render(request,'new-post.html')
+def search_results(request):
+    if 'project' in request.GET and request.GET['project']:
+        search_term =request.GET.get('project')
+        searched_project = Project.search_by_title(search_term)
+        message = f'{search_term}'
+        return render(request, 'search.html',{"message":message,"projects":searched_project})
+    else:
+        message = "You haven't searched for any term"
+    return render(request,'search.html',{'message':message})
