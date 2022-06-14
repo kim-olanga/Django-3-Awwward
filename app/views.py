@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+from .models import Profile, Project
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def homepage(request):
@@ -24,6 +25,22 @@ def homepage(request):
         )
         json_projects.append(obj)
     return render(request,'index.html',{"json_projects":json_projects})
+
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/registration_form.html', {'form': form})
+
+
 
 def new_post(request):
 
