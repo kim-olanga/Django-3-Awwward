@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -44,7 +45,10 @@ def register(request):
         form = SignUpForm()
     return render(request,'registration/register.html', {'form': form})
 
-
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    
+    return render(request,'profile.html',context)
 
 def new_post(request):
 
