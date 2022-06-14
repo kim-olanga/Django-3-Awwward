@@ -9,6 +9,7 @@ urlpatterns=[
     path('accounts/register/',views.register,name='register'),
     path('profile/',views.profile,name='profile'),
     path('new_post/',views.new_post,name='new_post'),
+    path('search/', views.search_results, name = 'search_results'),
 ]
 
 if settings.DEBUG:
