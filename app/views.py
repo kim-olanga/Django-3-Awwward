@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import Project, UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm
 
 from .models import Profile, Project
+
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def homepage(request):
@@ -41,7 +42,7 @@ def register(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'accounts/register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
 
 
 
