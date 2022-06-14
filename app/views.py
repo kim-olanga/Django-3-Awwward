@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from .forms import Project, UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm
 
 from .models import Profile, Project
 # Create your views here.
@@ -38,7 +41,7 @@ def register(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'registration/registration_form.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 
