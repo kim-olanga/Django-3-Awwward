@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns=[
     path('',views.homepage,name='homepage'),
     path('accounts/register/',views.register,name='register'),
+    path('profile/',views.profile,name='profile'),
     path('new-post/',views.new_post,name='new-post'),
 ]
 
